@@ -4,7 +4,7 @@
 
 ## 目录结构
 
-```
+`
 Operations Repository/
 ├── safesav/
 │   ├── alibaba/    data/ reports/ others/
@@ -13,12 +13,13 @@ Operations Repository/
 │   ├── taobao/     data/ reports/ others/
 │   └── 1688/       data/ reports/ others/
 └── angrui/
-    ├── alibaba/    data/ reports/ others/
+    ├── anruk/      data/ reports/ others/  <- 阿里国际站 店铺1
+    ├── goode/      data/ reports/ others/  <- 阿里国际站 店铺2
     ├── aliexpress/ data/ reports/ others/
     ├── mic/        data/ reports/ others/
     ├── taobao/     data/ reports/ others/
     └── 1688/       data/ reports/ others/
-```
+`
 
 ## 公司说明
 
@@ -29,7 +30,7 @@ Operations Repository/
 
 ## 平台覆盖
 
-- alibaba（阿里国际站）
+- alibaba / anruk / goode（阿里国际站）
 - aliexpress（速卖通）
 - mic（made-in-china.com）
 - taobao（淘宝）
@@ -43,9 +44,9 @@ Operations Repository/
 
 ## 命名规范
 
-`YYYY-MM-DD_平台_内容简述.ext`
+YYYY-MM-DD_平台_内容简述.ext
 
-示例：`2026-03-15_alibaba_inquiry.xlsx`
+示例：2026-03-15_alibaba_inquiry.xlsx
 
 ---
 *最后更新：2026-04-11*
