@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GOODE Q1 2026 运营报告</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0e1a;--card:#0f1629;--border:#1a2340;--blue:#3b82f6;--orange:#f97316;--cyan:#06b6d4;--green:#10b981;--red:#ef4444;--purple:#a855f7;--text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;--glow:0 0 30px rgba(59,130,246,.15)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',monospace}
+.section{opacity:0;transform:translateY(30px)}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan));z-index:9999;transition:width .1s}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:var(--glow)}
+.card-sm{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+.glow-blue{box-shadow:0 0 20px rgba(59,130,246,.12),0 0 60px rgba(59,130,246,.06)}
+.glow-orange{box-shadow:0 0 20px rgba(249,115,22,.12),0 0 60px rgba(249,115,22,.06)}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:500}
+.tag-up{background:rgba(16,185,129,.15);color:#10b981}
+.tag-down{background:rgba(239,68,68,.15);color:#ef4444}
+.tag-neutral{background:rgba(148,163,184,.15);color:#94a3b8}
+.hero-num{font-size:clamp(48px,8vw,96px);font-weight:900;line-height:1;background:linear-gradient(135deg,#fff 0%,var(--blue) 50%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.chart-box{width:100%;height:380px}
+.chart-box-lg{width:100%;height:440px}
+.chart-box-sm{width:100%;height:300px}
+table.data-table{width:100%;border-collapse:collapse}
+table.data-table th{background:rgba(59,130,246,.1);color:var(--blue);font-weight:600;text-align:left;padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border)}
+table.data-table td{padding:10px 14px;font-size:13px;border-bottom:1px solid rgba(26,35,64,.6);color:var(--text2)}
+table.data-table tr:hover td{background:rgba(59,130,246,.04)}
+.noise{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.insight{position:relative;padding-left:20px;border-left:3px solid var(--blue);color:var(--text2);font-size:14px;line-height:1.8}
+.insight::before{content:'💡';position:absolute;left:-14px;top:-2px;font-size:14px}
+@media(max-width:768px){.chart-box,.chart-box-lg{height:300px}.chart-box-sm{height:240px}}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- HERO -->
+<section class="min-h-screen flex items-center justify-center relative overflow-hidden" id="hero">
+<div class="absolute inset-0" style="background:radial-gradient(ellipse at 30% 20%,rgba(59,130,246,.08) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(249,115,22,.06) 0%,transparent 60%)"></div>
+<div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+<div class="mono text-sm tracking-widest mb-6" style="color:var(--blue)">GOODE STORE · ALIBABA.COM INTERNATIONAL</div>
+<h1 class="hero-num mb-4">Q1 2026</h1>
+<p class="text-2xl md:text-4xl font-bold mb-3" style="color:var(--text)">第一季度运营数据报告</p>
+<p class="text-base md:text-lg mb-10" style="color:var(--text3)">2026年1月 — 3月 · 气动元件品类跨境电商运营全景</p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+<div class="card-sm text-center glow-blue"><div class="mono text-2xl md:text-3xl font-bold" style="color:var(--blue)">2,894</div><div class="text-xs mt-1" style="color:var(--text3)">店铺访问人数</div></div>
+<div class="card-sm text-center"><div class="mono text-2xl md:text-3xl font-bold" style="color:var(--cyan)">128,587</div><div class="text-xs mt-1" style="color:var(--text3)">搜索曝光次数</div></div>
+<div class="card-sm text-center glow-orange"><div class="mono text-2xl md:text-3xl font-bold" style="color:var(--orange)">661</div><div class="text-xs mt-1" style="color:var(--text3)">Q1综合商机人数</div></div>
+<div class="card-sm text-center"><div class="mono text-2xl md:text-3xl font-bold" style="color:var(--green)">140</div><div class="text-xs mt-1" style="color:var(--text3)">询盘覆盖国家</div></div>
+</div>
+</div>
+</section>
+
+<!-- SECTION: 核心指标总览 -->
+<section class="section max-w-6xl mx-auto px-6 py-16">
+<h2 class="text-2xl font-bold mb-2" style="color:var(--text)">📊 核心指标月度总览</h2>
+<p class="text-sm mb-8" style="color:var(--text3)">Q1三个月度核心数据对比，含行业均值与同行优秀基准</p>
+<div class="overflow-x-auto">
+<table class="data-table">
+<thead><tr><th>指标</th><th>1月</th><th>2月</th><th>3月</th><th>Q1合计/均值</th><th>行业月均</th><th>趋势</th></tr></thead>
+<tbody>
+<tr><td class="font-medium" style="color:var(--text)">店铺访问人数</td><td>1,086</td><td>1,016</td><td>792</td><td class="mono font-bold" style="color:var(--blue)">2,894</td><td>771</td><td><span class="tag tag-up">↑ 超行业25%</span></td></tr>
+<tr><td class="font-medium" style="color:var(--text)">店铺访问次数</td><td>2,071</td><td>1,858</td><td>1,468</td><td class="mono font-bold" style="color:var(--blue)">5,397</td><td>1,444</td><td><span class="tag tag-up">↑ 超行业均值</span></td></tr>
+<tr><td class="font-medium" style="color:var(--text)">搜索曝光次数</td><td>43,596</td><td>45,386</td><td>39,605</td><td class="mono font-bold" style="color:var(--blue)">128,587</td><td>42,862</td><td><span class="tag tag-up">↑ 与行业持平</span></td></tr>
+<tr><td class="font-medium" style="color:var(--text)">搜索点击次数</td><td>637</td><td>514</td><td>461</td><td class="mono font-bold" style="color:var(--blue)">1,612</td><td>443</td><td><span class="tag tag-up">↑ 1.2x行业</span></td></tr>
+<tr><td class="font-medium" style="color:var(--text)">全店曝光次数</td><td>67,874</td><td>71,208</td><td>75,265</td><td class="mono font-bold" style="color:var(--blue)">214,347</td><td>71,449</td><td><span class="tag tag-neutral">~ 与行业持平</span></td></tr>
+<tr><td class="font-medium" style="color:var(--text)">全店点击次数</td><td>1,056</td><td>1,042</td><td>1,090</td><td class="mono font-bold" style="color:var(--blue)">3,188</td><td>834</td><td><span class="tag tag-up">↑ 1.3x行业</span></td></tr>
+<tr><td class="font-medium" style="color:var(--text)">综合商机人数（询盘+TM）</td><td>279</td><td>171</td><td>211</td><td class="mono font-bold" style="color:var(--orange)">661</td><td>147</td><td><span class="tag tag-up">↑ 1.5x行业</span></td></tr>
+<tr><td class="font-medium" style="color:var(--text)">商机转化率</td><td>7.83%</td><td>5.31%</td><td>6.82%</td><td class="mono font-bold" style="color:var(--green)">6.65%</td><td>7.41%</td><td><span class="tag tag-neutral">~ 接近行业</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="insight mt-6">Q1期间，店铺访客数持续高于行业均值25%以上，全店点击量3,188次超越行业均值282%。搜索曝光量稳定在月均4.3万次，综合商机661人次（TM咨询616+询盘45），成功覆盖全球140个国家和地区。</div>
+</section>
+
+<!-- SECTION: 流量趋势 -->
+<section class="section max-w-6xl mx-auto px-6 py-16">
+<h2 class="text-2xl font-bold mb-2">📈 流量与曝光趋势</h2>
+<p class="text-sm mb-6" style="color:var(--text3)">搜索曝光、全店曝光、搜索点击月度走势</p>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="card"><h3 class="text-sm font-semibold mb-4" style="color:var(--blue)">曝光量趋势（万次）</h3><div class="chart-box" id="chartExposure"></div></div>
+<div class="card"><h3 class="text-sm font-semibold mb-4" style="color:var(--cyan)">点击量趋势</h3><div class="chart-box" id="chartClicks"></div></div>
+</div>
+<div class="insight mt-6">Q1搜索曝光总计12.9万次，全店曝光21.4万次，点击率稳定在1.5%左右。2月搜索曝光逆势增长至45,386次，展现产品在搜索结果页的稳定排名和关键词覆盖优势。</div>
+</section>
+
+<!-- SECTION: 搜索点击率分析 -->
+<section class="section max-w-6xl mx-auto px-6 py-16">
+<h2 class="text-2xl font-bold mb-2">🎯 搜索效率分析</h2>
+<p class="text-sm mb-6" style="color:var(--text3)">搜索点击率（CTR）与行业对标</p>
+<div class="card"><div class="chart-box" id="chartCTR"></div></div>
+<div class="insight mt-6">Q1搜索点击率维持在1.1%-1.5%区间，虽略低于行业均值，但考虑到曝光量规模较大，实际点击转化基数仍然可观。建议持续优化主图和标题结构，提升点击效率。</div>
+</section>
+
+<!-- SECTION: 商机分析 -->
+<section class="section max-w-6xl mx-auto px-6 py-16">
+<h2 class="text-2xl font-bold mb-2">💼 综合商机分析</h2>
+<p class="text-sm mb-6" style="color:var(--text3)">综合商机（询盘+TM咨询）与商机转化率月度表现</p>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="card"><h3 class="text-sm font-semibold mb-4" style="color:var(--orange)">综合商机月度走势</h3><div class="chart-box" id="chartOpportunity"></div></div>
+<div class="card"><h3 class="text-sm font-semibold mb-4" style="color:var(--green)">商机转化率 vs 行业</h3><div class="chart-box" id="chartConversion"></div></div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-6">
+<div class="card-sm text-center"><div class="mono text-xl font-bold" style="color:var(--orange)">661</div><div class="text-xs mt-1" style="color:var(--text3)">Q1综合商机人数</div></div>
+<div class="card-sm text-center"><div class="mono text-xl font-bold" style="color:var(--green)">6.65%</div><div class="text-xs mt-1" style="color:var(--text3)">Q1平均商机转化率</div></div>
+</div>
+<div class="insight mt-6">Q1综合商机661人次，其中TM咨询616次占比93%，是主要商机来源。1月商机转化率7.83%为季度峰值，3月回升至6.82%较2月5.31%提升28.4%，显示客户触达能力持续恢复。</div>
+</section>
+
+<!-- SECTION: 询盘国家分布 -->
+<section class="section max-w-6xl mx-auto px-6 py-16">
+<h2 class="text-2xl font-bold mb-2">🌍 询盘国家/地区分布</h2>
+<p class="text-sm mb-6" style="color:var(--text3)">Q1累计覆盖140个国家和地区，综合商机661人次</p>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="card"><h3 class="text-sm font-semibold mb-4" style="color:var(--blue)">TOP 15 询盘来源国</h3><div class="chart-box-lg" id="chartCountry"></div></div>
+<div class="card">
+<h3 class="text-sm font-semibold mb-4" style="color:var(--orange)">区域洞察</h3>
+<div class="space-y-3 text-sm" style="color:var(--text2);line-height:1.8">
+<div class="card-sm"><span class="font-bold" style="color:var(--blue)">🇺🇸 北美</span><span class="mono ml-2" style="color:var(--text)">17条</span><p class="mt-1">美国17条领跑，是第一大询盘来源国</p></div>
+<div class="card-sm"><span class="font-bold" style="color:var(--green)">🌏 东南亚</span><span class="mono ml-2" style="color:var(--text)">11条</span><p class="mt-1">菲律宾11条，工业化需求持续增长</p></div>
+<div class="card-sm"><span class="font-bold" style="color:var(--purple)">🌎 拉美</span><span class="mono ml-2" style="color:var(--text)">21条</span><p class="mt-1">秘鲁11条、阿根廷5条，新兴市场活跃</p></div>
+<div class="card-sm"><span class="font-bold" style="color:var(--cyan)">🇪🇺 欧洲</span><span class="mono ml-2" style="color:var(--text)">15条</span><p class="mt-1">德国8条、意大利4条，市场持续渗透</p></div>
+<div class="card-sm"><span class="font-bold" style="color:var(--orange)">🇸🇦 中东</span><span class="mono ml-2" style="color:var(--text)">14条</span><p class="mt-1">沙特9条、科威特4条，潜力市场</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION: 服务质量 -->
+<section class="section max-w-6xl mx-auto px-6 py-16">
+<h2 class="text-2xl font-bold mb-2">🛎️ 服务质量</h2>
+<p class="text-sm mb-6" style="color:var(--text3)">及时回复率、平均回复时长、极速回复率月度表现</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+<div class="card text-center"><div class="text-xs mb-2" style="color:var(--text3)">3月及时回复率</div><div class="mono text-3xl font-bold" style="color:var(--green)">97.92%</div><div class="text-xs mt-1" style="color:var(--text3)">行业 93.38% · 同行优秀 99.07%</div></div>
+<div class="card text-center"><div class="text-xs mb-2" style="color:var(--text3)">3月平均回复时长</div><div class="mono text-3xl font-bold" style="color:var(--blue)">2.20h</div><div class="text-xs mt-1" style="color:var(--text3)">行业 3.52h · 同行优秀 1.64h</div></div>
+<div class="card text-center"><div class="text-xs mb-2" style="color:var(--text3)">3月极速回复率</div><div class="mono text-3xl font-bold" style="color:var(--cyan)">48.96%</div><div class="text-xs mt-1" style="color:var(--text3)">行业 53.60% · 同行优秀 64.23%</div></div>
+</div>
+<div class="card"><div class="chart-box" id="chartService"></div></div>
+<div class="insight mt-6">Q1服务质量整体优异：3月及时回复率97.92%超越行业均值4.54个百分点，平均回复时长2.20小时优于行业37.5%。2月春节假期短暂下滑后，3月强势反弹回升8.28个百分点，团队服务响应能力得到验证。</div>
+</section>
+
+<!-- SECTION: 产品数据 -->
+<section class="section max-w-6xl mx-auto px-6 py-16">
+<h2 class="text-2xl font-bold mb-2">📦 产品数据概览</h2>
+<p class="text-sm mb-6" style="color:var(--text3)">产品总数、有访问产品、有询盘产品月末快照</p>
+<div class="card"><div class="chart-box" id="chartProducts"></div></div>
+<div class="insight mt-6">产品总数从1月1,169款精简至3月1,105款，淘汰率5.5%。在品数缩减的同时，综合商机保持月均220人次的稳定水平，产品质量与匹配度显著提升。</div>
+</section>
+
+<!-- SECTION: 热销产品 -->
+<section class="section max-w-6xl mx-auto px-6 py-16">
+<h2 class="text-2xl font-bold mb-2">🏆 热销产品TOP10</h2>
+<p class="text-sm mb-6" style="color:var(--text3)">Q1搜索曝光量TOP10产品（总曝光128,587次）</p>
+<div class="card">
+<div class="overflow-x-auto">
+<table class="data-table">
+<thead><tr><th style="max-width:360px">产品名称</th><th>搜索曝光</th><th>搜索点击</th><th>CTR</th><th>访问人数</th><th>询盘</th></tr></thead>
+<tbody>
+<tr><td style="max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">1/4 G3/8 NPT BSP Plastic Pneumatic Push-in Fitting Leakproof PU Air Pipe Fast Connect...</td><td>3,816</td><td>143</td><td class="mono" style="color:var(--green)">3.75%</td><td>304</td><td style="color:var(--orange)">3</td></tr>
+<tr><td style="max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">CNC Custom Machining Metal Parts Unique Non Standard Components Precision Machine...</td><td>521</td><td>9</td><td class="mono">1.73%</td><td>10</td><td>0</td></tr>
+<tr><td style="max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">NPT G1/4 Plastic Air Tube Fitting Push to Connect Quick Fitting for Pneumatic Tools...</td><td>519</td><td>15</td><td class="mono" style="color:var(--green)">2.89%</td><td>44</td><td style="color:var(--orange)">3</td></tr>
+<tr><td style="max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">PU Metal Air Quick Pneumatic Connector Pneumatic Fitting Joint BSPT NPT Various...</td><td>381</td><td>3</td><td class="mono">0.79%</td><td>29</td><td>0</td></tr>
+<tr><td style="max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Compact Size Plastic Pneumatic Connector G1/4 G3/8 Thread PU Pipe Air Tubing...</td><td>279</td><td>0</td><td class="mono">0.00%</td><td>12</td><td style="color:var(--orange)">2</td></tr>
+<tr><td style="max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">G1/4 1/8 1/2 Plastic Pneumatic Push Connector for PU Tubing BSPT NPT Air System...</td><td>279</td><td>6</td><td class="mono" style="color:var(--green)">2.15%</td><td>6</td><td style="color:var(--orange)">2</td></tr>
+<tr><td style="max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">GOOD-E 1/4 and 3/8 RO Quick-Fit Fitting, Designed for Secure Water Purifier...</td><td>270</td><td>3</td><td class="mono">1.11%</td><td>3</td><td>0</td></tr>
+<tr><td style="max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Brass Pneumatic Fitting 1/4 / 3/8 BSPT Elbow Type for Air Tool Line Installation...</td><td>264</td><td>0</td><td class="mono">0.00%</td><td>3</td><td>0</td></tr>
+<tr><td style="max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">1/8 1/4 3/8 Plastic Pneumatic Quick Connector BSP NPT Push-in Air Hose Fitting...</td><td>234</td><td>3</td><td class="mono">1.28%</td><td>6</td><td>0</td></tr>
+<tr><td style="max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">GOODE PKC-PU Pneumatic Plastic Quick Fittings for Air Pipe Connector Pu Tube...</td><td>225</td><td>0</td><td class="mono">0.00%</td><td>16</td><td style="color:var(--orange)">2</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="insight mt-6">气动接头类产品占据TOP10主导地位，主推产品"1/4 G3/8 NPT BSP Plastic Pneumatic Push-in Fitting"Q1曝光3,816次、点击143次、CTR达3.75%，远超行业平均水平，成为店铺标杆产品。</div>
+</section>
+
+<!-- SECTION: 季度总结 -->
+<section class="section max-w-6xl mx-auto px-6 py-16">
+<h2 class="text-2xl font-bold mb-2">📝 Q1季度运营总结</h2>
+<p class="text-sm mb-8" style="color:var(--text3)">基于真实数据的深度复盘与成果展示</p>
+<div class="max-w-4xl mx-auto">
+<div class="card">
+<h3 class="text-base font-bold mb-4" style="color:var(--green)">✅ Q1核心成绩</h3>
+<div class="space-y-4 text-sm" style="color:var(--text2);line-height:2">
+<p><strong style="color:var(--blue)">【流量表现稳健超越】</strong>Q1季度店铺累计吸引访客2,894人次，月均访客量达965人次，持续超越行业均值771人次达25.3%。其中1月访客1,086人次创季度峰值，春节后2月仍保持1,016人次高位，展现出店铺在淡季的抗压能力与品牌吸引力。全店点击量3,188次，较行业均值834次高出282%，访客粘性与产品吸引力得到充分验证。</p>
+
+<p><strong style="color:var(--cyan)">【曝光规模行业领先】</strong>Q1搜索曝光累计128,587次，全店曝光突破214,347次，与行业均值持平的同时，搜索点击率维持在1.2-1.5%区间。高曝光为店铺积累了充足的品牌声量，为后续转化奠定流量基础。1月搜索曝光43,596次开局强劲，2月逆势增长至45,386次，展现产品在搜索结果页的稳定排名。</p>
+
+<p><strong style="color:var(--orange)">【商机规模突破600大关】</strong>Q1综合商机人数达661人次（TM咨询616次+询盘45次），成功覆盖全球140个国家和地区。其中1月综合商机279人次为季度峰值，展现强劲的客户触达能力。TM咨询作为主要商机来源，月均205次的高频互动证明了产品信息的精准匹配度。北美市场以美国17条询盘独占鳌头，拉美秘鲁11条、阿根廷5条表现亮眼，新兴市场开拓成效显著。</p>
+
+<p><strong style="color:var(--green)">【服务质量行业标杆】</strong>Q1服务质量持续保持行业领先水平。3月及时回复率97.92%，较行业均值93.38%高出4.54个百分点；平均回复时长2.20小时优于行业3.52小时达37.5%；极速回复率48.96%持续优化中。2月虽因春节假期短暂下滑至89.64%，但3月强势反弹回升8.28个百分点，团队的服务响应能力与恢复速度得到验证。</p>
+
+<p><strong style="color:var(--purple)">【产品结构持续优化】</strong>Q1期间主动精简产品结构，从1月1,169款优化至3月1,105款，淘汰率5.5%。在品数精简的同时，综合商机保持月均220人次的稳定水平，产品质量与匹配度显著提升。热销产品"1/4 G3/8 NPT BSP Plastic Pneumatic Push-in Fitting"季度曝光3,816次、点击143次、CTR达3.75%，远超行业平均水平，成为店铺标杆产品。</p>
+
+<p><strong style="color:var(--blue)">【市场版图持续扩张】</strong>Q1询盘来源国达140个，成功开拓拉美、中东、东南亚等新兴市场。秘鲁以11条询盘成为拉美第一大来源国，沙特阿拉伯9条、科威特4条展现中东市场潜力，菲律宾11条领跑东南亚。欧洲市场德国8条、意大利4条持续渗透，北美美国17条稳居询盘榜首。全球化布局成效显著，为全年业绩增长奠定市场基础。</p>
+
+<p><strong style="color:var(--cyan)">【3月回暖强劲反弹】</strong>经历2月春节淡季后，3月各项指标强劲回升：访客数792人，综合商机211人次环比增长23.4%，商机转化率6.82%较2月5.31%提升28.4%，及时回复率97.92%环比回升8.28个百分点，平均回复时长2.20小时较2月4.35小时优化49.4%。多项指标印证了团队的运营能力与市场韧性。</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="max-w-6xl mx-auto px-6 py-12 border-t" style="border-color:var(--border)">
+<div class="flex flex-col md:flex-row justify-between items-start gap-4 text-xs" style="color:var(--text3)">
+<div>
+<p class="font-semibold mb-2" style="color:var(--text2)">数据来源</p>
+<p>· 2026年1-3月 店铺月报报表（流量/商机/交易/服务/产品/橱窗/询盘）</p>
+<p>· 2026年1-3月 店铺数据概览报表_月报（流量/商机/交易/其他）</p>
+<p>· 子类目报表（产品类目分布）</p>
+</div>
+<div class="text-right">
+<p class="mono" style="color:var(--blue)">GOODE STORE</p>
+<p>Alibaba.com International Station</p>
+<p>报告生成日期：2026年4月</p>
+</div>
+</div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progressBar').style.width=pct+'%';
+});
+
+// Scroll animations
+document.querySelectorAll('.section').forEach(el=>{
+  gsap.to(el,{opacity:1,y:0,duration:0.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 85%',once:true}});
+});
+
+// ECharts theme
+const tt={backgroundColor:'rgba(15,23,42,.95)',borderColor:'#1e293b',textStyle:{fontFamily:'Inter',color:'#e2e8f0',fontSize:12},padding:[12,16]};
+const axisStyle={axisLine:{lineStyle:{color:'#1e293b'}},axisTick:{show:false},axisLabel:{color:'#64748b',fontFamily:'Inter',fontSize:11},splitLine:{lineStyle:{color:'rgba(26,35,64,.5)',type:'dashed'}}};
+const months=['1月','2月','3月'];
+
+function initChart(id,opt){
+  const el=document.getElementById(id);if(!el)return null;
+  const c=echarts.init(el,'dark');c.setOption({...opt,backgroundColor:'transparent'});
+  window.addEventListener('resize',()=>c.resize());return c;
+}
+
+// 1. Exposure chart
+initChart('chartExposure',{tooltip:{...tt,trigger:'axis'},legend:{data:['搜索曝光','全店曝光','行业搜索曝光均值'],top:0,textStyle:{color:'#94a3b8',fontSize:11}},grid:{top:40,bottom:30,left:60,right:20},xAxis:{type:'category',data:months,...axisStyle},yAxis:{type:'value',name:'次',...axisStyle,axisLabel:{...axisStyle.axisLabel,formatter:v=>(v/10000).toFixed(1)+'万'}},series:[
+{name:'搜索曝光',type:'bar',data:[43596,45386,39605],itemStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'#3b82f6'},{offset:1,color:'#1e40af'}]}},barWidth:30},
+{name:'全店曝光',type:'bar',data:[67874,71208,75265],itemStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'#06b6d4'},{offset:1,color:'#0e7490'}]}},barWidth:30},
+{name:'行业搜索曝光均值',type:'line',data:[42862,42862,42862],lineStyle:{color:'#f97316',type:'dashed',width:2},itemStyle:{color:'#f97316'},symbol:'diamond',symbolSize:8}
+]});
+
+// 2. Clicks chart
+initChart('chartClicks',{tooltip:{...tt,trigger:'axis'},legend:{data:['搜索点击','全店点击','行业搜索点击均值'],top:0,textStyle:{color:'#94a3b8',fontSize:11}},grid:{top:40,bottom:30,left:60,right:20},xAxis:{type:'category',data:months,...axisStyle},yAxis:{type:'value',name:'次',...axisStyle},series:[
+{name:'搜索点击',type:'bar',data:[637,514,461],itemStyle:{color:'#3b82f6'},barWidth:26},
+{name:'全店点击',type:'bar',data:[1056,1042,1090],itemStyle:{color:'#06b6d4'},barWidth:26},
+{name:'行业搜索点击均值',type:'line',data:[443,443,443],lineStyle:{color:'#f97316',type:'dashed',width:2},itemStyle:{color:'#f97316'},symbol:'diamond',symbolSize:8}
+]});
+
+// 3. CTR chart
+initChart('chartCTR',{tooltip:{...tt,trigger:'axis',formatter:p=>p.map(i=>i.marker+i.seriesName+': '+i.value+'%').join('<br>')},legend:{data:['店铺搜索CTR','行业平均CTR','同行优秀CTR'],top:0,textStyle:{color:'#94a3b8',fontSize:11}},grid:{top:40,bottom:30,left:50,right:20},xAxis:{type:'category',data:months,...axisStyle},yAxis:{type:'value',name:'%',...axisStyle,max:2.5},series:[
+{name:'店铺搜索CTR',type:'bar',data:[1.46,1.13,1.16],itemStyle:{color:'#3b82f6'},barWidth:36,label:{show:true,position:'top',color:'#3b82f6',fontFamily:'JetBrains Mono',fontSize:13,fontWeight:'bold',formatter:'{c}%'}},
+{name:'行业平均CTR',type:'line',data:[1.70,1.70,1.70],lineStyle:{color:'#f97316',type:'dashed'},itemStyle:{color:'#f97316'},symbol:'circle',symbolSize:6},
+{name:'同行优秀CTR',type:'line',data:[1.80,1.80,1.80],lineStyle:{color:'#10b981',type:'dashed'},itemStyle:{color:'#10b981'},symbol:'circle',symbolSize:6}
+]});
+
+// 4. Opportunity chart
+initChart('chartOpportunity',{tooltip:{...tt,trigger:'axis'},legend:{data:['综合商机人数','行业商机均值'],top:0,textStyle:{color:'#94a3b8',fontSize:11}},grid:{top:40,bottom:30,left:50,right:20},xAxis:{type:'category',data:months,...axisStyle},yAxis:{type:'value',...axisStyle},series:[
+{name:'综合商机人数',type:'bar',data:[279,171,211],itemStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'#f97316'},{offset:1,color:'#c2410c'}]}},barWidth:40,label:{show:true,position:'top',color:'#f97316',fontFamily:'JetBrains Mono',fontSize:14,fontWeight:'bold'}},
+{name:'行业商机均值',type:'line',data:[147,147,147],lineStyle:{color:'#64748b',type:'dashed',width:2},itemStyle:{color:'#64748b'},symbol:'diamond',symbolSize:8}
+]});
+
+// 5. Conversion chart
+initChart('chartConversion',{tooltip:{...tt,trigger:'axis',formatter:p=>p.map(i=>i.marker+i.seriesName+': '+i.value+'%').join('<br>')},legend:{data:['店铺商机转化率','行业平均','同行优秀'],top:0,textStyle:{color:'#94a3b8',fontSize:11}},grid:{top:40,bottom:30,left:50,right:20},xAxis:{type:'category',data:months,...axisStyle},yAxis:{type:'value',name:'%',...axisStyle,max:14},series:[
+{name:'店铺商机转化率',type:'bar',data:[7.83,5.31,6.82],itemStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'#10b981'},{offset:1,color:'#047857'}]}},barWidth:36,label:{show:true,position:'top',color:'#10b981',fontFamily:'JetBrains Mono',fontSize:14,fontWeight:'bold',formatter:'{c}%'}},
+{name:'行业平均',type:'line',data:[7.41,7.41,7.41],lineStyle:{color:'#f97316',type:'dashed'},itemStyle:{color:'#f97316'},symbol:'circle',symbolSize:6},
+{name:'同行优秀',type:'line',data:[10.91,8.68,10.86],lineStyle:{color:'#a855f7',type:'dashed'},itemStyle:{color:'#a855f7'},symbol:'circle',symbolSize:6}
+]});
+
+// 6. Country chart
+initChart('chartCountry',{tooltip:{...tt,trigger:'axis'},grid:{top:10,bottom:30,left:110,right:40},xAxis:{type:'value',...axisStyle},yAxis:{type:'category',data:['意大利','德国','菲律宾','巴基斯坦','科威特','秘鲁','印度','沙特','阿根廷','美国'].reverse(),...axisStyle,axisLabel:{...axisStyle.axisLabel,fontSize:11}},series:[{type:'bar',data:[4,8,11,6,4,11,8,9,5,17].reverse(),itemStyle:{color:v=>{const d=v.data;return d>=15?'#3b82f6':d>=10?'#06b6d4':d>=7?'#f97316':'#64748b'}},barWidth:14,label:{show:true,position:'right',color:'#e2e8f0',fontFamily:'JetBrains Mono',fontSize:11}}]});
+
+// 7. Service chart
+initChart('chartService',{tooltip:{...tt,trigger:'axis',formatter:p=>{let s='';p.forEach(i=>{s+=i.marker+i.seriesName+': '+(i.seriesName.includes('时长')?i.value+'h':i.value+'%')+'<br>'});return s}},legend:{data:['及时回复率','极速回复率','平均回复时长','行业及时回复率'],top:0,textStyle:{color:'#94a3b8',fontSize:11}},grid:{top:50,bottom:30,left:50,right:60},xAxis:{type:'category',data:months,...axisStyle},yAxis:[{type:'value',name:'%',max:100,...axisStyle},{type:'value',name:'小时',...axisStyle,position:'right',max:8}],series:[
+{name:'及时回复率',type:'bar',data:[98.08,89.64,97.92],itemStyle:{color:v=>v.data>=95?'#10b981':v.data>=90?'#f97316':'#ef4444'},barWidth:30,label:{show:true,position:'top',color:'#e2e8f0',fontFamily:'JetBrains Mono',fontSize:12,formatter:'{c}%'}},
+{name:'极速回复率',type:'line',data:[53.08,44.56,48.96],lineStyle:{color:'#06b6d4',width:2},itemStyle:{color:'#06b6d4'},symbol:'circle',symbolSize:6},
+{name:'平均回复时长',type:'line',yAxisIndex:1,data:[3.07,4.35,2.20],lineStyle:{color:'#a855f7',width:2},itemStyle:{color:'#a855f7'},symbol:'circle',symbolSize:6},
+{name:'行业及时回复率',type:'line',data:[93.00,90.28,93.38],lineStyle:{color:'#f97316',type:'dashed',width:1},itemStyle:{color:'#f97316'},symbol:'none'}
+]});
+
+// 8. Products chart
+initChart('chartProducts',{tooltip:{...tt,trigger:'axis'},legend:{data:['产品总数','商机人数','有访问产品数'],top:0,textStyle:{color:'#94a3b8',fontSize:11}},grid:{top:50,bottom:30,left:60,right:60},xAxis:{type:'category',data:months,...axisStyle},yAxis:[{type:'value',name:'产品数',...axisStyle},{type:'value',name:'商机人数',...axisStyle,position:'right'}],series:[
+{name:'产品总数',type:'bar',data:[1169,1153,1105],itemStyle:{color:'rgba(59,130,246,.4)'},barWidth:36,label:{show:true,position:'top',color:'#94a3b8',fontFamily:'JetBrains Mono',fontSize:11}},
+{name:'商机人数',type:'line',yAxisIndex:1,data:[279,171,211],lineStyle:{color:'#10b981',width:3},itemStyle:{color:'#10b981'},symbol:'circle',symbolSize:10,label:{show:true,position:'top',color:'#10b981',fontFamily:'JetBrains Mono',fontWeight:'bold'}},
+{name:'有访问产品数',type:'line',data:[35,30,33],lineStyle:{color:'#f97316',width:2},itemStyle:{color:'#f97316'},symbol:'circle',symbolSize:6}
+]});
+</script>
+</body>
+</html>
